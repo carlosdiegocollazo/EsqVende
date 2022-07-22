@@ -1,0 +1,66 @@
+<div class="inside">
+   <div class="container-fluid">
+      <menu-item></menu-item>
+      <router-view></router-view>
+      <!-- Div contenendor general-->
+      <div class="row justify-content-center align-items-center" style="margin-top: 100px;">
+         <form>
+            <H1 style="text-align-last: center; color: aliceblue;">Gestion de Familias</H1>
+            <div class="form-group col-md-12" style="text-align-last: center;">
+               <label for="descripcion" style="color: aliceblue;" title="Ingrese el nombe de la Familia">Familia de Articulos</label>
+               <input type="text" class="form-control" name="descripcion" title="Ingrese el nombe de la familias"
+                  v-model="registro.descripcion" placeholder="Descripcion" v-on:keyup.13="creardescripcion()" required>
+            </div>
+            <div class="form-group col-md-12" style="text-align: center;">
+               <label title="Observaciones" for="observaciones" style=" color: aliceblue;"></label>
+               <input title="Observaciones" type="text" class="form-control inputformu" id="observaciones" v-model="registro.observaciones" placeholder="Observaciones">
+            </div>
+            <div class="form-group col-md-3"></div>
+            <div class="form-group col-md-12" style=" color: aliceblue; text-align: center;">
+               <button type="@leave-cancelled=" class="btn btn-info" v-on:click="limpiar()">Limpiar</button>
+               <button type="@leave-cancelled=" class="btn btn-danger" v-on:click="cerrarsesion()">Volver</button>
+               <button type="submit" class="btn btn-success" v-on:click="crearfamilias()">Ingresar</button>
+            </div>
+         </form>
+         <!--comienzo de de tabla-->
+         <template>
+            <div class="table-responsive small table-striped accordion table-dark">
+               <table class="table">
+                  <thead class="thead-dark">
+                     <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Descripcion</th>
+                        <th scope="col">Observaciones</th>
+                        <th scope="col">Activo</th>
+                        <th scope="col">Acciones</th>
+                        <th scope="col">Acciones</th>
+
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr v-for="(familias,index) in familias" style="color: aquamarine;">
+                        <td><input class="inputtabla" type="text" v-model="familias.idfam" size="3" disabled>
+                        </td>
+                        <td><input class="inputtabla" type="text" v-model="familias.descripcion"
+                              title="Haga click para editar y luego presione el botón Modificar"></td>
+                        <td><input class="inputtabla" type="text" v-model="familias.observaciones"
+                              title="Haga click para editar y luego presione el botón Modificar"></td>
+                        <td><input class="inputtabla" type="checkbox" v-model="familias.activo"></td>
+                        <td><button class="btn btn-danger"
+                              v-on:click="eliminarmoneda(index,familias.idfam)">Elimina</button></td>
+                        <td><button class="btn btn-success" v-on:click="actualizarfamilias(index)">Modifica</button>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+
+            </div>
+
+         </template>
+
+      </div>
+      <!--find de tabla-->
+   </div>
+</div>
+<!-- Div contenendor general-->
+</div>

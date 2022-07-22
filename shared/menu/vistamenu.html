@@ -1,0 +1,57 @@
+
+<div class="container">
+  <nav class="navbar navbar-expand-lg navbar-dark">
+
+  <a class="navbar-brand" href="#"><img src="../../../shared/media/esqlogo_med.svg" class="animate__animated zoomIn"
+          alt=""></a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+      aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+  </button>
+<div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <div class="tutorial">
+      <ul>
+        <li >Facturar</li>
+        <li>Articulos<i class="fa fa-angle-down"></i>
+          <ul>
+            <li><router-link to="/articulos" class="nav-link menuitem" href="articulos">Articulos</a></li>
+            <li><router-link to="/familias" class="nav-link menuitem" href="familias">Familias</a></li>
+          </ul>
+        </li>
+        <li>Finanzas<i class="fa fa-angle-down"></i>
+          <ul>
+            <li><router-link to="/cheques" class="nav-link menuitem" href="cheques">Cheques</a></li>
+            <li><router-link to="/monedas" class="nav-link menuitem" href="monedas">Monedas</a></li>
+            <li><router-link to="/cotizaciones" class="nav-link menuitem" href="cotizaciones">Cotizaciones</a></li>
+            <li>Cierre de caja</li>
+            <li>Transferencias</li>
+            <li><router-link to="/bancos" class="nav-link menuitem" href="bancos">Bancos</a></li>
+          </ul>
+        </li>
+        <li>Personas<i class="fa fa-angle-down"></i>
+          <ul>
+            <li><router-link to="/clientes" class="nav-link menuitem" href="clientes">Clientes</a></li>
+            <li><router-link to="/proveedores" class="nav-link menuitem" href="proveedores">Proveedores</a></li>
+            <li><router-link to="/usuarios" class="nav-link menuitem" href="usuarios">Usuarios</a></li>
+            <li>Javascript<span>21 Available</span></li>
+            <li>Design<span>37 Available</span></li>
+          </ul>
+        </li>
+        <li>Configuracion<i class="fa fa-angle-down"></i>
+            <ul>
+              <li><router-link to="/seguridad" class="nav-link menuitem" href="seguridad">Seguridad</a></li>
+            </ul>
+          </li>
+             <li>
+              <router-link to="/" class="nav-link butsalir" href="#" >SALIR</router-link>
+            </li>
+            </ul>
+          </div>
+     <li>
+        <input class="inputfec" type="date" title="Fecha del día" data-date-format="DD-MM-YYYY" disabled name="fecha"
+      v-model="fecha">
+    <h4 class="h4nombre"> {{nombreusuario}}</h4>
+  </li>
+</nav>
+    </div>

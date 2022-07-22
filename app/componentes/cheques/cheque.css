@@ -1,0 +1,60 @@
+.inside{
+    /* imagen de fondo */
+    background-image: url(../../../shared/media/2560_3000inside.jpg);
+    background-position: center;
+    /* Centro */
+    background-size: auto;
+    /* Ajuste automático */
+    background-size: cover;
+    /* Escalar sin recortar */
+    background-attachment: fixed;
+    /*normalizar*/
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+input.inputtabla {
+    border: none;
+    background: transparent;
+    color: white;
+    text-align: right;ç
+}
+
+input.inputtablasm {
+    border: none;
+    background: transparent;
+    color: white;
+    text-align: right;
+    width: 50px;
+}
+
+input.inputtabla:hover {
+    border: none;
+    background: seagreen;
+    color: white;
+}
+
+input.inputform:focus-visible {
+    border-style: solid;
+    border: 0;
+    border-color: rgb(0, 255, 13);
+    background: #dfe;
+    color: white;
+}
+
+.selectcombo{
+    width: 100%;
+}
+
+
+
+/*input:valid,
+textarea:valid {
+    background: green;
+}
+
+input:invalid,
+textarea:invalid {
+    background: red;
+}*/

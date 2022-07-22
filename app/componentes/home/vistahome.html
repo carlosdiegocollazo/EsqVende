@@ -1,0 +1,31 @@
+<div class="alogin">
+    <div class="container-fluid">
+        <!-- Div contenendor general-->
+        <div class="imglogo container-fluid animate__animated zoomIn justify-content-center">
+            <img src="../../../shared/media/esqlogo_med.svg" alt=""></a>
+        </div>
+        <div class="row justify-content-center align-items-center">
+            <form>
+                <div class="row" class="login">
+                    <div>
+                        <label for="email" style="color: aliceblue;">E-Mail</label>
+                        <input type="email" class="form-control" name="email" v-model="usuario.email"
+                            placeholder="Ingrese Email">
+                    </div>
+                    <br>
+                    <br>
+                    <div class="form-group">
+                        <label for="password" style="color: aliceblue;">Contraseña</label>
+                        <input type="password" class="form-control" name="password"
+                            placeholder="Ingrese contraseña" v-model="usuario.password" v-on:keyup.enter="loginuser()">
+                        </div>
+                    <button type="@leave-cancelled=" style="margin-top: 15px;" class="btn btn-danger"
+                        v-on:click="cerrarsesion()">Cancelar</button>
+                    <button type="button" style="margin-top: 15px; margin-left: 30px;" class="btn btn-primary" 
+                        v-on:click="loginUser()">Ingresar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- Div contenendor general-->
+</div>

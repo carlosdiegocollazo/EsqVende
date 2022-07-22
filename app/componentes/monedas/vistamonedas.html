@@ -1,0 +1,64 @@
+<div class="inside">
+   <div class="container-fluid">
+      <menu-item></menu-item>
+      <router-view></router-view>
+      <!-- Div contenendor general-->
+      <div class="row justify-content-center align-items-center" style="margin-top: 100px;">
+         <form>
+            <H1 style="text-align-last: center; color: aliceblue;">Gestion de Monedas</H1>
+            <div class="form-group col-md-12" style="text-align-last: center;">
+               <label for="monedas" style="color: aliceblue;" title="Ingrese el nombe de la moneda">Nombre de
+                  Moneda</label>
+               <input type="text" class="form-control" name="monedas" title="Ingrese el nombe de la monedas"
+                  v-model="registro.monedas" placeholder="Descripcion" v-on:keyup.13="crearmonedas()" required>
+            </div>
+            <div class="form-group col-md-12" style="text-align: center;">
+               <label title="Activo - Multiplica || Vacio . Divide" for="divide" style=" color: aliceblue;">Para Cotizar</label>
+               <input title="Activo - Multiplica || Vacio . Divide" type="checkbox" class="form-control inputformu" id="divide" v-model="registro.divide">
+            </div>
+            <div class="form-group col-md-3"></div>
+            <div class="form-group col-md-12" style=" color: aliceblue; text-align: center;">
+               <button type="@leave-cancelled=" class="btn btn-info" v-on:click="limpiar()">Limpiar</button>
+               <button type="@leave-cancelled=" class="btn btn-danger" v-on:click="cerrarsesion()">Volver</button>
+               <button type="submit" class="btn btn-success" v-on:click="crearmonedas()">Ingresar</button>
+            </div>
+         </form>
+         <!--comienzo de de tabla-->
+         <template>
+            <div class="table-responsive small table-striped accordion table-dark">
+               <table class="table">
+                  <thead class="thead-dark">
+                     <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">monedas</th>
+                        <th scope="col">A Cotizar</th>
+                        <th scope="col">Acciones</th>
+                        <th scope="col">Acciones</th>
+
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr v-for="(monedas,index) in monedas" style="color: aquamarine;">
+                        <td><input class="inputtabla" type="text" v-model="monedas.idmon" size="3" disabled>
+                        </td>
+                        <td><input class="inputtabla" type="text" v-model="monedas.moneda"
+                              title="Haga click para editar y luego presione el botón Modificar"></td>
+                        <td><input class="inputtabla" type="checkbox" v-model="monedas.divide"></td>
+                        <td><button class="btn btn-danger"
+                              v-on:click="eliminarmoneda(index,monedas.idmon)">Elimina</button></td>
+                        <td><button class="btn btn-success" v-on:click="actualizarmonedas(index)">Modifica</button>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+
+            </div>
+
+         </template>
+
+      </div>
+      <!--find de tabla-->
+   </div>
+</div>
+<!-- Div contenendor general-->
+</div>

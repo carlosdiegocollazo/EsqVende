@@ -1,0 +1,68 @@
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <a class="navbar-brand" href="#"><img src="../../../shared/media/esqlogo_med.svg" class="animate__animated zoomIn"
+            alt=""></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+<div class="collapse navbar-collapse" id="navbarNavDropdown">-->
+        
+       <ul class="navbar-nav">
+            <li class="nav-item">
+                <router-link to="/movimientos" class="nav-link menuitem" href="movimientos">Movimientos</a>
+            </li>
+            <li class="nav-item">
+                <router-link to="/cheques" class="nav-link menuitem" href="cheques">Cheques</a>
+            </li>
+            <li class="nav-item">
+                <router-link to="/monedas" class="nav-link menuitem" href="monedas">Monedas</a>
+            </li>
+            <li class="nav-item">
+                <router-link to="/cotizaciones" class="nav-link menuitem" href="cotizaciones">Cotizaciones</a>
+            </li>
+            <li class="nav-item">
+                <router-link to="/bancos" class="nav-link menuitem" href="bancos">Bancos</a>
+            </li>
+            <li class="nav-item">
+                <router-link to="/documentos" class="nav-link menuitem" href="documentos">Documentos</a>
+            </li>
+            <li class="nav-item">
+                <router-link to="/proveedores" class="nav-link menuitem" href="proveedores">Proveedores</a>
+            </li>
+            <li class="nav-item">
+                <router-link to="/usuarios" class="nav-link menuitem" href="usuarios">Usuarios</a>
+            </li>
+            <li class="nav-item">
+                <router-link to="/articulos" class="nav-link menuitem" href="articulos">Articulos</a>
+            </li>
+            <li class="nav-item">
+                <router-link to="/seguridad" class="nav-link menuitem" href="seguridad">Seguridad</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    más opciones
+                </a>
+
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <router-link to="/notfound" class="nav-link menuitem" href="#">Not Found</router-link>
+                    <router-link to="/articulos" class="dropdown-item" href="articulos">Articulos</router-link>
+                    <a class="dropdown-item" href="4">Documentos</a>
+                    <a class="dropdown-item" href="5">Seguridad</a>
+                </div>
+            </li>
+
+        </ul>
+<!--         <div class="container animate__animated animate__backInLeft " style="justify-content: flex-end;">
+            <div class="form-row">
+                <div class="form-group col-md-12 text-align: -webkit-right; usernom">
+                    <input class="inputfec" type="date" data-date-format="DD-MM-YYYY" disabled name="fecha"
+                        v-model="fecha">
+                    <h4 class="h4nombre"> {{nombreusuario}}</h4>
+                    <router-link to="/" class="nav-link butsalir" href="#" >SALIR</router-link>
+                </div>
+            </div>
+
+        </div> -->
+    </div>
+</nav>

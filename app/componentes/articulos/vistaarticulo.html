@@ -1,0 +1,178 @@
+<div class="inside">
+<div class="container-fluid">
+    <menu-item></menu-item>
+    <router-view></router-view>
+    <br>
+    <br>
+    <H1 style="text-align-last: center; color: aliceblue;">Gestion de Articulos del Sistema</H1>
+    <form style="color: aliceblue;">
+        
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label for="codigo" style="color: aliceblue;">Codigo</label>
+                <input type="codigo" class="form-control" name="codigo" v-model="registro.codigo"
+                    placeholder="Ingrese Codigo Articulo">
+            </div>
+                        <div class="form-group col-md-3">
+                <label for="barras" style="color: aliceblue;">Barras</label>
+                <input type="text" class="form-control" name="barras" placeholder="Ingrese Codigo de Barras"
+                    v-model="registro.barras">
+            </div>
+        </div>
+        <div class="form-row">
+
+            <div class="form-group col-md-6">
+                <label for="descipcion" style="color: aliceblue;">Descripcion</label>
+                <input type="text" class="form-control" name="descipcion" placeholder="Ingrese Descripcion de articulo"
+                    v-model="registro.descripcion">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-2">
+                <label for="costo" style="color: aliceblue;">Costo</label>
+                <input type="number" class="form-control" name="costo" placeholder="Ingrese costo del articulo"
+                    v-model="registro.costo">
+            </div>
+            <div class="form-group col-md-2">
+                <label for="pvps" style="color: aliceblue;">PvPS</label>
+                <input type="number" class="form-control" name="pvps" placeholder="Ingrese PvPS"
+                    v-model="registro.pvps">
+            </div>
+            <div class="form-group col-md-2">
+                <label for="pvp" style="color: aliceblue;">PvP</label>
+                <input type="number" class="form-control" name="pvp" placeholder="Ingrese pvp"
+                    v-model="registro.pvp">
+            </div>
+            <div class="form-group col-md-2">
+                <label for="unidad" style="color: aliceblue;">Unidad de medida</label>
+                <input type="number" class="form-control" name="unidad" placeholder="Ingrese Unidad de medida"
+                    v-model="registro.unidad">
+            </div>
+            <div class="form-group col-md-2">
+                <label for="stock" style="color: aliceblue;">Stock</label>
+                <input type="text" class="form-control" id="stock" placeholder="Ingrese Stock"
+                    v-model="registro.stock">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-2">
+                <label for="codigofamilia" style="color: aliceblue;" title="x 1">Familia</label>
+                <select required v-model="codigofamilia" class="form-control" style="width: 100%;" required>
+                    <option disabled value="">Seleccione</option>
+                    <option v-for="(codigofamilia,index) in devuelvofamilia" v-bind:value="codigofamilia">
+                        {{codigofamilia.idfam}} {{codigofamilia.descripcion}}
+                    </option>
+                </select>
+            </div>
+
+            <div class="form-group col-md-2">
+                <label for="codigoproveedor" style="color: aliceblue;" title="x 1">Proveedor</label>
+                <select required v-model="codigoproveedor" class="form-control" style="width: 100%;" required>
+                    <option disabled value="">Seleccione</option>
+                    <option v-for="(codigoproveedor,index) in devuelvoproveedor" v-bind:value="codigoproveedor">
+                        {{codigoproveedor.idpro}} {{codigoproveedor.razon}} {{codigoproveedor.fantasia}}
+                    </option>
+                </select>
+            </div>
+            <div class="form-group col-md-2" style="text-align: center; ">
+
+
+            </div>
+            <div class="form-group col-md-2" style="text-align: center;">
+                <label for="activo" style=" color: aliceblue;">Activo</label>
+                <input type="checkbox" class="form-control" id="activo" v-model="registro.activo">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <label for="observaciones" style="color: aliceblue;">Observaciones</label>
+                <input type="text" class="form-control" id="observaciones"
+                    placeholder="Ingrese observaciones o comentarios" v-model="registro.observaciones">
+            </div>
+
+            <button class="btn btn-primary" v-on:click="mostraractivos()" style="margin-left: 30px;">Mostrar
+                Activos</button>
+            <button class="btn btn-primary" v-on:click="mostrartodos()" style="margin-left: 30px;">Mostrar
+                Todos</button>
+            <button type="@leave-cancelled=" class="btn btn-danger" v-on:click="limpiar()"
+                style="margin-left: 30px;">Cancelar</button>
+            <button type="submit" class="btn btn-success"
+                v-on:click="registArticulo()"
+                style="margin-left: 30px;">Ingresar</button>
+
+    </form>
+    <br>
+
+    <div class="container-fluid" style="margin-top: 50;">
+        <!--comienzo de de tabla-->
+        <template>
+            <div class="container-fluid" style="text-align: center;">
+                <div class="row">
+                    <div class="col-mg-12">
+                        <div class="table-responsive small table-striped  table-dark">
+
+                            <table class="table-responsive">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Codigo</th>
+                                        <th scope="col">Barras</th>
+                                        <th scope="col">Descripcion</th>
+                                        <th scope="col">PvP</th>
+                                        <th scope="col">PvPS</th>
+                                        <th scope="col">Stock</th>
+                                        <th scope="col">Unidad</th>
+                                        <th scope="col">Familia</th>
+                                        <th scope="col">Proveedor</th>
+                                        <th scope="col">Observaciones</th>
+                                        <th scope="col">Activo</th>
+                                        <th scope="col">Gestion</th>
+                                        <th scope="col">Gestion</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="(articulos,index) in articulos" style="color: aquamarine;">
+                                        <td><input class="inputtabla" type="text" v-model="articulos.idart" size="3">
+                                        </td>
+                                        <td><input class="inputtabla" type="text" v-model="articulos.codigo"
+                                                title="Haga click para editar y luego presione el botón Modificar"></td>
+                                        <td><input class="inputtabla" type="text" v-model="articulos.barras"
+                                                title="Haga click para editar y luego presione el botón Modificar"></td>
+                                        <td><input class="inputtabla" type="text" v-model="articulos.descipcion"
+                                                title="Haga click para editar y luego presione el botón Modificar"></td>
+                                        <td><input class="inputtabla" type="tel" v-model="articulos.pvp"
+                                                title="Haga click para editar y luego presione el botón Modificar"></td>
+                                        <td><input class="inputtabla" type="text" v-model="articulos.pvps"
+                                                title="Haga click para editar y luego presione el botón Modificar"></td>
+                                        <td><input class="inputtabla" type="text" v-model="articulos.stock"
+                                                title="Haga click para editar y luego presione el botón Modificar"></td>
+                                        <td><input class="inputtabla" type="text" v-model="articulos.unidad"
+                                                title="Haga click para editar y luego presione el botón Modificar"></td>
+                                        <td><input class="inputtabla" type="text" v-model="articulos.familia"
+                                                title="Haga click para editar y luego presione el botón Modificar"></td>
+                                        <td><input class="inputtabla" type="text" v-model="articulos.proveedor"
+                                                title="Haga click para editar y luego presione el botón Modificar"></td>
+                                        <td><input class="inputtabla" type="text" v-model="articulos.observaciones"
+                                                title="Haga click para editar y luego presione el botón Modificar"></td>
+                                        <td><input class="inputtabla" type="checkbox" v-model="articulos.activo"
+                                                title="Haga click para editar y luego presione el botón Modificar"></td>
+                                        <td><button class="btn btn-danger"
+                                                v-on:click="eliminararticulo(index,articulos.idart)">Elimina</button></td>
+                                        <td><button class="btn btn-success"
+                                                v-on:click="actualizararticulo(index)">Modifica</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </template>
+
+    </div>
+    <!--find de tabla-->
+
+</div>
+</div>
+<!-- Div contenendor general-->
+</div>
