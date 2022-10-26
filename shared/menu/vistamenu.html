@@ -12,21 +12,24 @@
 <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <div class="tutorial">
       <ul>
-        <li >Facturar</li>
+        <li >Facturar<i class="fa fa-angle-down"></i>
+        <ul>
+          <li><router-link to="/articulosconsulta" class="nav-link menuitem" href="nm ">Consulta Precios</a></li>
+          <li><router-link to="/facturacion" class="nav-link menuitem" href="facturacion">Facturacion</a></li>
+        </ul>
+      </li>
         <li>Articulos<i class="fa fa-angle-down"></i>
           <ul>
             <li><router-link to="/articulos" class="nav-link menuitem" href="articulos">Articulos</a></li>
-            <li><router-link to="/familias" class="nav-link menuitem" href="familias">Familias</a></li>
+            
           </ul>
         </li>
         <li>Finanzas<i class="fa fa-angle-down"></i>
           <ul>
             <li><router-link to="/cheques" class="nav-link menuitem" href="cheques">Cheques</a></li>
-            <li><router-link to="/monedas" class="nav-link menuitem" href="monedas">Monedas</a></li>
-            <li><router-link to="/cotizaciones" class="nav-link menuitem" href="cotizaciones">Cotizaciones</a></li>
-            <li>Cierre de caja</li>
+                  <li><router-link to="/cotizaciones" class="nav-link menuitem" href="cotizaciones">Cotizaciones</a></li>
+                  <li>Cierre de caja</li>
             <li>Transferencias</li>
-            <li><router-link to="/bancos" class="nav-link menuitem" href="bancos">Bancos</a></li>
           </ul>
         </li>
         <li>Personas<i class="fa fa-angle-down"></i>
@@ -41,6 +44,12 @@
         <li>Configuracion<i class="fa fa-angle-down"></i>
             <ul>
               <li><router-link to="/seguridad" class="nav-link menuitem" href="seguridad">Seguridad</a></li>
+                <li><router-link to="/cajas" class="nav-link menuitem" href="cajas">Cajas</a></li>
+                <li><router-link to="/bancos" class="nav-link menuitem" href="bancos">Bancos</a></li>
+                <li><router-link to="/monedas" class="nav-link menuitem" href="monedas">Monedas</a></li>
+                <li><router-link to="/depositos" class="nav-link menuitem" href="depositos">Depositos</a></li>
+                <li><router-link to="/familias" class="nav-link menuitem" href="familias">Familias</a></li>
+                <li><router-link to="/documentos" class="nav-link menuitem" href="documentos">Documentos</a></li>
             </ul>
           </li>
              <li>

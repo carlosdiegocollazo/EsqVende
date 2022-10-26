@@ -30,11 +30,22 @@ module.exports = function(app){
 		res.send(response);
 	});
 
-	//Devuelve JSON con objeto "articuloCodigo" seleccionado por el valor de su campo Codigo.
-	app.get('/articulos/codigo/find', midd.rutasProtegidas, async function (req, res) {
-		let codigo 		= req.body.articuloCodigo;
+	//Devuelve JSON con objeto "articulo" seleccionado por el valor de su campo codigo.
+	//si se encuentra activo.
+	app.get('/articulos/codigo/:codigo', midd.rutasProtegidas, async function (req, res) {
+		let codigo 			= req.params.codigo;
 		let Articulo 	= require('../services/articulos');
 		let response 	= await Articulo.obtenerArticuloPorCodigo(codigo);
+		res.set(['Content-Type', 'application/json']);
+		res.send(response);
+	});
+
+	//Devuelve JSON con objeto "articulo" seleccionado por el valor de su campo barra.
+	//si se encuentra activo.
+	app.get('/articulos/barra/:barra', midd.rutasProtegidas, async function (req, res) {
+		let barra 			= req.params.barra;
+		let Articulo 	= require('../services/articulos');
+		let response 	= await Articulo.obtenerArticuloPorBarra(barra);
 		res.set(['Content-Type', 'application/json']);
 		res.send(response);
 	});

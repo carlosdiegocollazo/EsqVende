@@ -19,8 +19,15 @@ let Articulo = {
 
     obtenerArticulos: async function() {
         let sql = `
-							SELECT * FROM articulos
-							WHERE articulos.activo = 1
+SELECT articulos.idart, articulos.codigo, articulos.barras, articulos.descripcion, articulos.costo, articulos.iva, articulos.costoiva,
+         articulos.ganancia, articulos.pvp, articulos.stock, articulos.familia, familias.descripcion, 
+         articulos.proveedor, proveedores.fantasia, articulos.deposito, depositos.nombre,
+         articulos.observaciones, articulos.activo 
+         FROM articulos 
+          INNER JOIN familias ON articulos.familia = familias.idfam
+          INNER JOIN proveedores ON articulos.proveedor = proveedores.idpro 
+          INNER JOIN depositos ON articulos.deposito = depositos.iddep 
+          where articulos.activo =1 order by articulos.idart asc
 						`
         let response = { error: "No se encontraron articulos" }
         let resultado = await conn.query(sql);
@@ -34,7 +41,15 @@ let Articulo = {
 
     obtenerArticulosall: async function() {
         let sql = `
-							SELECT * FROM articulos
+SELECT articulos.idart, articulos.codigo, articulos.barras, articulos.descripcion, articulos.costo, articulos.iva, articulos.costoiva,
+        articulos.ganancia, articulos.pvp, articulos.stock, articulos.familia, familias.descripcion, 
+        articulos.proveedor, proveedores.fantasia, articulos.deposito, depositos.nombre,
+        articulos.observaciones, articulos.activo 
+        FROM articulos 
+         INNER JOIN familias ON articulos.familia = familias.idfam
+         INNER JOIN proveedores ON articulos.proveedor = proveedores.idpro 
+         INNER JOIN depositos ON articulos.deposito = depositos.iddep 
+        order by articulos.idart asc
 						`
         let response = { error: "No se encontraron articulos" }
         let resultado = await conn.query(sql);
@@ -48,7 +63,14 @@ let Articulo = {
 
     obtenerArticuloPorId: async function(id) {
         let sql = `
-	  			SELECT * FROM articulos
+        SELECT articulos.idart, articulos.codigo, articulos.barras, articulos.descripcion, articulos.costo, articulos.iva, articulos.costoiva,
+        articulos.ganancia, articulos.pvp, articulos.stock, articulos.familia, familias.descripcion, 
+        articulos.proveedor, proveedores.fantasia, articulos.deposito, depositos.nombre,
+        articulos.observaciones, articulos.activo 
+        FROM articulos 
+         INNER JOIN familias ON articulos.familia = familias.idfam
+         INNER JOIN proveedores ON articulos.proveedor = proveedores.idpro 
+         INNER JOIN depositos ON articulos.deposito = depositos.iddep 
 	  			WHERE 
 	  			articulos.idart = '${id}' 
 	  			&& articulos.activo = 1
@@ -66,13 +88,20 @@ let Articulo = {
 
     obtenerArticuloPorCodigo: async function(codigo) {
         let sql = `
-	  			SELECT * FROM articulos
+        SELECT articulos.idart, articulos.codigo, articulos.barras, articulos.descripcion, articulos.costo, articulos.iva, articulos.costoiva,
+        articulos.ganancia, articulos.pvp, articulos.stock, articulos.familia, familias.descripcion, 
+        articulos.proveedor, proveedores.fantasia, articulos.deposito, depositos.nombre,
+        articulos.observaciones, articulos.activo 
+        FROM articulos 
+         INNER JOIN familias ON articulos.familia = familias.idfam
+         INNER JOIN proveedores ON articulos.proveedor = proveedores.idpro 
+         INNER JOIN depositos ON articulos.deposito = depositos.iddep 
 	  			WHERE 
-	  			articulos.codigo = '${codigo}' 
+	  			articulos.codigo = ${codigo} 
 	  			&& articulos.activo = 1
 	 		`
         let articulos = []
-        let response = { error: `No existe el articulo con Codigo: ${id}` }
+        let response = { error: `No existe el articulo con Codigo: ${codigo}` }
         articulos = await conn.query(sql)
         if (articulos.code) {
             response = { error: "Error en consulta SQL" };
@@ -84,10 +113,18 @@ let Articulo = {
 
 
     obtenerArticuloPorBarra: async function(barra) {
+        console.log(barra)
         let sql = `
-	  			SELECT * FROM articulos
+        SELECT articulos.idart, articulos.codigo, articulos.barras, articulos.descripcion, articulos.costo, articulos.iva, articulos.costoiva,
+        articulos.ganancia, articulos.pvp, articulos.stock, articulos.familia, familias.descripcion, 
+        articulos.proveedor, proveedores.fantasia, articulos.deposito, depositos.nombre,
+        articulos.observaciones, articulos.activo 
+        FROM articulos 
+         INNER JOIN familias ON articulos.familia = familias.idfam
+         INNER JOIN proveedores ON articulos.proveedor = proveedores.idpro 
+         INNER JOIN depositos ON articulos.deposito = depositos.iddep 
 	  			WHERE 
-	  			articulos.barras = '${barra}' 
+	  			articulos.barras = ${barra}
 	  			&& articulos.activo = 1
 	 		`
         let articulos = []
@@ -110,12 +147,14 @@ let Articulo = {
 							barras,
 							descripcion,							
 							costo,
-							pvp,
-							pvps,
+							iva,
+							costoiva,
+							ganancia,
+                            pvp,
 							stock,
-							unidad,
 							familia,
 							proveedor,
+                            deposito,
 							observaciones,
 							activo
 							 )
@@ -125,21 +164,24 @@ let Articulo = {
 							'${articulo.barras}',
 							'${articulo.descripcion}',
 							'${articulo.costo}',
+							'${articulo.iva}',
+							'${articulo.costoiva}',
+                            '${articulo.ganancia}',
 							'${articulo.pvp}',
-							'${articulo.pvps}',
 							'${articulo.stock}',
-							'${articulo.unidad}',
 							'${articulo.familia}',
 							'${articulo.proveedor}',
+                            '${articulo.deposito}',
 							'${articulo.observaciones}',
 							'${articulo.activo}'
 							)
 				`
 
-                //console.log("sql que inserta",sql)
+               // console.log("sql que inserta",sql)
         let response = { error: "No se pudo crear el articulo" }
         let codigo = articulo.codigo;
         let existeArticulo = await this.obtenerArticuloPorCodigo(codigo);
+        
         if (existeArticulo.error) {
             try {
                 let resultado = await conn.query(sql);
@@ -166,12 +208,14 @@ let Articulo = {
 								barras 			= '${articulo.barras}',
 								descripcion 	= '${articulo.descripcion}',
 								costo 		    = '${articulo.costo}',
-								pvp	 	        = '${articulo.pvp}',
-								pvps	 	    = '${articulo.pvps}',
+								iva	 	        = '${articulo.iva}',
+								costoiva	    = '${articulo.costoiva}',
+                                ganancia	    = '${articulo.ganancia}',
+								pvp 	 	    = '${articulo.pvp}',
 								stock			= '${articulo.stock}',
-								unidad		    = '${articulo.unidad}',
 								familia			= '${articulo.familia}',
 								proveedor		= '${articulo.proveedor}',
+                                deposito        = '${articulo.deposito}',
 								observaciones 	= '${articulo.observaciones}',
 								activo 			= '${articulo.activo}'
 							WHERE

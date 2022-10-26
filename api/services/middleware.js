@@ -26,6 +26,8 @@ let Middleware = {
       "/articulos/all": "Acceso Permitido",
       "/articulos/allall": "Acceso Permitido",
       "/articulos/:id": "Acceso Permitido",
+      "/articulos/codigo/:codigo": "Acceso Permitido",
+      "/articulos/barra/:barra": "Acceso Permitido",
       "/articulos/new": "Acceso Permitido",
       "/articulos/edit/:id": "Acceso Permitido",
       "/articulos/delete/:id": "Acceso Permitido",
@@ -70,6 +72,21 @@ let Middleware = {
       "/bancos/edit/:id": "Acceso Permitido",
       "/bancos/delete/:id": "Acceso Permitido",
       
+      //cajas
+      "/cajas/all": "Acceso Permitido",
+      "/cajas/allall": "Acceso Permitido",
+      "/cajas/:id": "Acceso Permitido",
+      "/cajas/new": "Acceso Permitido",
+      "/cajas/edit/:id": "Acceso Permitido",
+      "/cajas/delete/:id": "Acceso Permitido",
+      
+      //depositos
+      "/depositos/all": "Acceso Permitido",
+      "/depositos/allall": "Acceso Permitido",
+      "/depositos/:id": "Acceso Permitido",
+      "/depositos/new": "Acceso Permitido",
+      "/depositos/edit/:id": "Acceso Permitido",
+      "/depositos/delete/:id": "Acceso Permitido",
 
       //seguridad
       "/seguridad/all": "Acceso Permitido",

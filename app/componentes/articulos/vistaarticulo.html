@@ -56,7 +56,7 @@
         </div>
         <div class="form-row">
             <div class="form-group col-md-2">
-                <label for="codigofamilia" style="color: aliceblue;" title="x 1">Familia</label>
+                <label for="codigofamilia" style="color: aliceblue;" title="Fam">Familia</label>
                 <select required v-model="codigofamilia" class="form-control" style="width: 100%;" required>
                     <option disabled value="">Seleccione</option>
                     <option v-for="(codigofamilia,index) in devuelvofamilia" v-bind:value="codigofamilia">
@@ -66,7 +66,7 @@
             </div>
 
             <div class="form-group col-md-2">
-                <label for="codigoproveedor" style="color: aliceblue;" title="x 1">Proveedor</label>
+                <label for="codigoproveedor" style="color: aliceblue;" title="Prov">Proveedor</label>
                 <select required v-model="codigoproveedor" class="form-control" style="width: 100%;" required>
                     <option disabled value="">Seleccione</option>
                     <option v-for="(codigoproveedor,index) in devuelvoproveedor" v-bind:value="codigoproveedor">
@@ -74,10 +74,17 @@
                     </option>
                 </select>
             </div>
-            <div class="form-group col-md-2" style="text-align: center; ">
+            
+                <div class="form-group col-md-2">
+                    <label for="codigodeposito" style="color: aliceblue;" title="Fam">Deposito</label>
+                    <select required v-model="codigodeposito" class="form-control" style="width: 100%;" required>
+                        <option disabled value="">Seleccione</option>
+                        <option v-for="(codigodeposito,index) in devuelvodeposito" v-bind:value="codigodeposito">
+                            {{codigodeposito.iddep}} {{codigodeposito.nombre}}
+                        </option>
+                    </select>
+                </div>
 
-
-            </div>
             <div class="form-group col-md-2" style="text-align: center;">
                 <label for="activo" style=" color: aliceblue;">Activo</label>
                 <input type="checkbox" class="form-control" id="activo" v-model="registro.activo">
@@ -99,7 +106,7 @@
             <button type="submit" class="btn btn-success"
                 v-on:click="registArticulo()"
                 style="margin-left: 30px;">Ingresar</button>
-
+            <button type="@leave-cancelled=" style="margin-left: 30px" class="btn btn-danger" v-on:click="cerrarsesion()">Volver</button>
     </form>
     <br>
 
@@ -124,6 +131,7 @@
                                         <th scope="col">Unidad</th>
                                         <th scope="col">Familia</th>
                                         <th scope="col">Proveedor</th>
+                                        <th scope="col">Deposito</th>
                                         <th scope="col">Observaciones</th>
                                         <th scope="col">Activo</th>
                                         <th scope="col">Gestion</th>
@@ -151,6 +159,8 @@
                                         <td><input class="inputtabla" type="text" v-model="articulos.familia"
                                                 title="Haga click para editar y luego presione el botón Modificar"></td>
                                         <td><input class="inputtabla" type="text" v-model="articulos.proveedor"
+                                                title="Haga click para editar y luego presione el botón Modificar"></td>
+                                        <td><input class="inputtabla" type="text" v-model="articulos.deposito"
                                                 title="Haga click para editar y luego presione el botón Modificar"></td>
                                         <td><input class="inputtabla" type="text" v-model="articulos.observaciones"
                                                 title="Haga click para editar y luego presione el botón Modificar"></td>

@@ -1,0 +1,102 @@
+<div class="inside">
+   <div class="container-fluid">
+      <menu-item></menu-item>
+      <router-view></router-view>
+      <!-- Div contenendor general-->
+      <div class="row justify-content-center align-items-center" style="margin-top: 100px;">
+         <form>
+            <H1 style="text-align-last: center; color: aliceblue;">Gestion de Cajas</H1>
+             <div class="form-group col-md-12">
+                  <input type="text" class="form-control" required name="nombre" title="Nombre de la Caja" v-model="registro.nombre"
+                     placeholder="Ingrese el nombre de la Caja" style="text-align: left; margin-top: 10px;">
+               </div>
+               <select v-model="codigomoneda" required class="form-control">
+                  <option disabled value="">Seleccione Moneda de la caja</option>
+                  <option v-for="(codigomoneda,index) in devuelvomoneda" v-bind:value="codigomoneda">
+                     {{codigomoneda.idmon}} {{codigomoneda.moneda}}
+                  </option>
+               </select>
+               <div class="form-group col-md-12">
+                  <input type="text" required class="form-control" name="observaciones" title="Observaciones"
+                     v-model="registro.observaciones" placeholder="Observaciones"  style="text-align: left; margin-top: 10px;" >
+               </div>
+               <div class="form-group col-md-12">
+                  <input type="checkbox" class="form-control" required name="principal" title="Principal"
+                     v-model="registro.principal" placeholder="Es caja principal"  style="text-align: left; margin-top: 10px;">
+               </div>
+               <div class="form-group col-md-2" style="text-align: center;">
+                  <label for="activo" style=" color: aliceblue;">Activa</label>
+                  <input type="checkbox" class="form-control" id="activo" v-model="registro.activo">
+              </div>
+               <div class="form-group col-md-12">
+               </div>
+               <div class="form-group col-md-3"></div>
+               <div class="form-group col-md-12" style=" color: aliceblue; text-align: center;">
+                  <button type="@leave-cancelled=" class="btn btn-info" v-on:click="limpiar()">Limpiar</button>
+                  <button type="@leave-cancelled=" class="btn btn-danger" v-on:click="cerrarsesion()">Volver</button>
+                  <button type="submit" class="btn btn-success" v-on:click="crearcajas()">Ingresar</button>
+               </div>
+            </form>
+         <div class="container-fluid" style="margin-top: 50;">
+            <!--comienzo de de tabla-->
+            <template>
+               <div class="container-fluid">
+                  <div class="row">
+                     <div class="col-md-4"></div>
+                     <div class="col-md-12">
+                        <div class="table-responsive small table-striped  table-dark">
+
+                           <table class="table">
+                              <thead class="thead-dark" style="text-align: center;">
+                                 <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Moneda</th>
+                                    <th scope="col">Observaciones</th>
+                                    <th scope="col">Es Principal</th>
+                                    <th scope="col">Activa</th>
+                                    <th scope="col">Acciones</th>
+                                    <th scope="col">Acciones</th>
+
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr v-for="(caja,index) in cajas" style="color: aquamarine;">
+                                    <td><input class="inputtabla" type="number" v-model="caja.idcaja" size="3">
+                                    </td>
+                                    <td><input class="inputtabla" type="text" v-model="caja.nombre"
+                                          title="Haga click para editar y luego presione el botón Modificar"></td>
+                                    <td style="text-align: center;">
+                                       <input class="inputtablasm" type="number" v-model="caja.idmon"
+                                          title="Haga click para editar y luego presione el botón Modificar"><input
+                                          disabled style="text-align: left;" class="inputtabla" type="text"
+                                          v-model="caja.cajmon">
+                                    </td>
+                                    <td style="text-align: center;">
+                                       <input class="inputtabla" type="text" v-model="caja.observaciones"></td>
+                                    <td><input class="inputtabla" type="che" v-model="caja.principal"
+                                          title="Haga click para editar y luego presione el botón Modificar"></td>
+                                    <td><input class="inputtabla" type="checkbox" v-model="caja.activo"
+                                          title="Haga click para editar y luego presione el botón Modificar"></td>
+                                    <td style="text-align: center;">
+                                    <td><button class="btn btn-danger"
+                                          v-on:click="eliminarcajas(index,caja.idcaja)">Elimina</button></td>
+                                    <td><button class="btn btn-success"
+                                          v-on:click="actualizarcajas(index)">Modifica</button>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </template>
+
+         </div>
+         <!--find de tabla-->
+      </div>
+   </div>
+   <!-- Div contenendor general-->
+</div>
