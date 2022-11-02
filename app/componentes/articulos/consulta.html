@@ -4,26 +4,22 @@
     <router-view></router-view>
     <br>
     <br>
-    <H1 style="text-align-last: center; color: aliceblue;">Consulta Precio</H1>
+    <H1 style="text-align-last: center; color: aliceblue;">Consulta de Articulo</H1>
     <form style="color: aliceblue;">
         
         <div class="form-row">
-            <div class="form-group col-md-3">
-                <label for="codigo" style="color: aliceblue;">Codigo</label>
-                <input type="codigo" class="form-control" name="codigo" v-model="registro.codigo"
-                    placeholder="Ingrese Codigo Articulo">
+            <div class="form-group col-md-6">
+                <label for="codigo" style="color: aliceblue;">Codigo de Articulo</label>
+                <input type="codigo" class="form-control" name="codigo" placeholder="Ingrese cualquiera de los codigos del Articulo"
+                v-model="registro.codigo" v-on:keyup.enter="buscarxcodigo(registro.codigo,devuelvoarticulo.idart)" >
             </div>
-                        <div class="form-group col-md-3">
-                <label for="barras" style="color: aliceblue;">Barras</label>
-                <input type="text" class="form-control" name="barras" placeholder="Ingrese Codigo de Barras"
-                    v-model="registro.barras">
-            </div>
-        </div>
-        <div class="form-row">
+        <div class="form-row col-md-3">
+            <button class="btn btn-info" style="margin-left: 30px;" v-on:click="buscarxcodigo(registro.codigo,devuelvoarticulo.idart)">Buscar</button>
             <button type="@leave-cancelled=" class="btn btn-danger" v-on:click="cerrarsesion()" style="margin-left: 30px;">Volver</button>
-    </form>
-    <br>
-
+        </div>       
+    </div>
+        </form>
+       <br>
     <div class="container-fluid" style="margin-top: 50;">
         <!--comienzo de de tabla-->
         <template>
@@ -35,55 +31,38 @@
                             <table class="table-responsive">
                                 <thead class="thead-dark">
                                     <tr>
-                                        <!-- <th scope="col">ID</th>-->
+                                        <!--<th scope="col">ID</th>
                                         <th scope="col">Codigo</th>
-                                        <th scope="col">Barras</th>
+                                        <th scope="col">Barras</th>-->
                                         <th scope="col">Descripcion</th>
                                         <th scope="col">PvP</th>
                                         <th scope="col">PvPS</th>
                                         <th scope="col">Stock</th>
-                                        <th scope="col">Unidad</th>
-                                        <th scope="col">Familia</th>
-                                        <!-- <th scope="col">Proveedor</th>-->
                                         <th scope="col">Deposito</th>
                                         <th scope="col">Observaciones</th>
-                                        <th scope="col">Activo</th>
-                                        <!--<th scope="col">Gestion</th>
-                                        <th scope="col">Gestion</th>-->
-                                    </tr>
+
+                                    </tr>  
                                 </thead>
                                 <tbody>
-                                    <tr v-for="(articulos,index) in articulos" style="color: aquamarine;">
-                                        <!--<td><input class="inputtabla" type="text" v-model="articulos.idart" size="3">
-                                        </td>-->
-                                        <td><input class="inputtabla" type="text" v-model="articulos.codigo"
-                                                title="Haga click para editar y luego presione el botón Modificar"></td>
-                                        <td><input class="inputtabla" type="text" v-model="articulos.barras"
-                                                title="Haga click para editar y luego presione el botón Modificar"></td>
-                                        <td><input class="inputtabla" type="text" v-model="articulos.descipcion"
-                                                title="Haga click para editar y luego presione el botón Modificar"></td>
-                                        <td><input class="inputtabla" type="tel" v-model="articulos.pvp"
-                                                title="Haga click para editar y luego presione el botón Modificar"></td>
-                                        <td><input class="inputtabla" type="text" v-model="articulos.pvps"
-                                                title="Haga click para editar y luego presione el botón Modificar"></td>
-                                        <td><input class="inputtabla" type="text" v-model="articulos.stock"
-                                                title="Haga click para editar y luego presione el botón Modificar"></td>
-                                        <td><input class="inputtabla" type="text" v-model="articulos.unidad"
-                                                title="Haga click para editar y luego presione el botón Modificar"></td>
-                                        <td><input class="inputtabla" type="text" v-model="articulos.familia"
-                                                title="Familia de articulo"></td>
-                                       <!-- <td><input class="inputtabla" type="text" v-model="articulos.proveedor"
-                                                title="Haga click para editar y luego presione el botón Modificar"></td>-->
-                                        <td><input class="inputtabla" type="text" v-model="articulos.deposito"
-                                            title="Haga click para editar y luego presione el botón Modificar"></td>
-                                        <td><input class="inputtabla" type="text" v-model="articulos.observaciones"
-                                                title="Haga click para editar y luego presione el botón Modificar"></td>
-                                        <!--<td><input class="inputtabla" type="checkbox" v-model="articulos.activo"
-                                                title="Haga click para editar y luego presione el botón Modificar"></td>
-                                        <td><button class="btn btn-danger"
-                                                v-on:click="eliminararticulo(index,articulos.idart)">Elimina</button></td>
-                                        <td><button class="btn btn-success"
-                                                v-on:click="actualizararticulo(index)">Modifica</button>-->
+                                    <tr v-for="(devuelvoarticulo,index)" style="color: aquamarine;">
+<!--
+                                        <td><input class="consultatable" type="text" v-model="devuelvoarticulo.codigo"
+                                                title="Codigo de articulo"></td>
+                                        <td><input class="consultatable" type="text" v-model="devuelvoarticulo.barras"
+                                                title="Codigo de barras"></td>-->
+                                        <td><input class="consultatable" type="text" v-model="devuelvoarticulo.descipcion"
+                                                title="Descripcion del articulo"></td>
+                                        <td><input class="consultatable" type="tel" v-model="devuelvoarticulo.pvp"
+                                                title="Precio venta publico"></td>
+                                        <td><input class="consultatable" type="text" v-model="devuelvoarticulo.pvps"
+                                                title="Precio venta publico Sugerido"></td>
+                                        <td><input class="consultatable" type="text" v-model="devuelvoarticulo.stock"
+                                                title="Stock de articulo"></td>
+                                        <td><input class="consultatable" type="text" v-model="devuelvoarticulo.deposito"
+                                            title="Deposito del articulo"></td>
+                                        <td><input class="consultatable" type="text" v-model="devuelvoarticulo.observaciones"
+                                                title="Observaciones"></td>
+
                                         </td>
                                     </tr>
                                 </tbody>
@@ -99,4 +78,3 @@
 </div>
 </div>
 <!-- Div contenendor general-->
-</div>

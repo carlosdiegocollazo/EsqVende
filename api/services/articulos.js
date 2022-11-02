@@ -97,7 +97,7 @@ SELECT articulos.idart, articulos.codigo, articulos.barras, articulos.descripcio
          INNER JOIN proveedores ON articulos.proveedor = proveedores.idpro 
          INNER JOIN depositos ON articulos.deposito = depositos.iddep 
 	  			WHERE 
-	  			articulos.codigo = ${codigo} 
+	  			articulos.codigo = ${codigo} or articulos.barras = ${codigo}
 	  			&& articulos.activo = 1
 	 		`
         let articulos = []

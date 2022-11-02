@@ -21,6 +21,13 @@ input.inputtabla {
     text-align: right;
 }
 
+input.consultatable {
+    border: none;
+    background: transparent;
+    color: rgb(255, 1, 1);
+    text-align: right;
+}
+
 input.inputtabla:hover {
     border: none;
     background: seagreen;
