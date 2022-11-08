@@ -124,6 +124,39 @@ let cajas = {
 		////console.log("respose de api",response)
 	},
 
+	abrircajas: async function (cajas, id) {
+		let sql = `
+					UPDATE cajas
+					SET
+					caja		= '${cajas.nombre}',
+					moneda		= '${cajas.cajmon}',
+					cuenta		= '${cajas.observaciones}',
+					sucursal	= '${cajas.cajprin}',
+					activo	 	= 1			
+					WHERE
+					cajas.idcaja = '${id}'
+				`
+		let response = {};
+		let existecajas = await this.obtenercajasPorId(id);
+		if (!existecajas.error) {
+			let resultado = await conn.query(sql);
+
+			if (resultado.code) {
+				response = { error: "Error en consulta SQL" };
+			} else if (resultado.affectedRows > 0) {
+				response = { response: "cajas actualizado correctamente" }
+			} else {
+				response = { error: "No se pudo actualizar el cajas" }
+			}
+		} else {
+			response = { error: `No existe cajas con Id: ${id}` }
+		}
+		return response;
+		////console.log("respose de api",response)
+	},
+
+
+
 	eliminarcajas: async function (id) {
 		let sql = `
 							UPDATE cajas 

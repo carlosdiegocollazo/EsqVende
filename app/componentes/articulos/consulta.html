@@ -25,7 +25,8 @@
         <template>
             <div class="container-fluid" style="text-align: center;">
                 <div class="row">
-                    <div class="col-mg-12">
+                    <div class="col-mg-1
+                    2">
                         <div class="table-responsive small table-striped  table-dark">
 
                             <table class="table-responsive">
@@ -45,25 +46,22 @@
                                 </thead>
                                 <tbody>
                                     <tr v-for="(devuelvoarticulo,index)" style="color: aquamarine;">
-<!--
-                                        <td><input class="consultatable" type="text" v-model="devuelvoarticulo.codigo"
+                                            <!--<td> <input class="consultatable" type="text" v-model="devuelvoarticulo.codigo"
                                                 title="Codigo de articulo"></td>
                                         <td><input class="consultatable" type="text" v-model="devuelvoarticulo.barras"
                                                 title="Codigo de barras"></td>-->
-                                        <td><input class="consultatable" type="text" v-model="devuelvoarticulo.descipcion"
+                                        <td><input class="consultatable" type="text" v-model="devuelvoarticulo.descripcion"
                                                 title="Descripcion del articulo"></td>
-                                        <td><input class="consultatable" type="tel" v-model="devuelvoarticulo.pvp"
+                                        <td><input class="consultatable" type="number" v-model="devuelvoarticulo.pvp"
                                                 title="Precio venta publico"></td>
-                                        <td><input class="consultatable" type="text" v-model="devuelvoarticulo.pvps"
+                                        <td><input class="consultatable" type="number" v-model="devuelvoarticulo.pvps"
                                                 title="Precio venta publico Sugerido"></td>
-                                        <td><input class="consultatable" type="text" v-model="devuelvoarticulo.stock"
+                                        <td><input class="consultatable" type="number" v-model="devuelvoarticulo.stock"
                                                 title="Stock de articulo"></td>
                                         <td><input class="consultatable" type="text" v-model="devuelvoarticulo.deposito"
                                             title="Deposito del articulo"></td>
                                         <td><input class="consultatable" type="text" v-model="devuelvoarticulo.observaciones"
                                                 title="Observaciones"></td>
-
-                                        </td>
                                     </tr>
                                 </tbody>
                         </div>

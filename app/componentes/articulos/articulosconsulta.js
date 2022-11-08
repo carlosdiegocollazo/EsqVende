@@ -46,6 +46,7 @@ let articulosconsulta = Vue.component('articuloconsulta-component', function (re
                         costoiva: "",
                         ganancia: "",
                         pvp: "",
+                        pvps: "",
                         stock: "",
                         familia: "",
                         proveedor: "",
@@ -62,16 +63,15 @@ let articulosconsulta = Vue.component('articuloconsulta-component', function (re
             methods: {
                 buscarxcodigo: function (res) {
                     let idart = res
-                    console.log("codigo que recibo", idart)
+                    //console.log("codigo que recibo", idart)
                     let token = localStorage.getItem("token");
                     const headtoken = { headers: { "mytoken": `${token}` } }
                     //this.articulos.splice(idart, 1) //elimina la linea de la table y espues de la base
                     axios.get(API + '/articulos/codigo/' + idart, headtoken).then((res) => {
-
                         let devuelvoarticulo = res.data.response;
                         //console.log("contenido del for", devuelvoarticulo)
                         this.devuelvoarticulo = devuelvoarticulo
-                        //console.log("lo que se lleva en el this", this.devuelvoarticulo.descripcion)
+                        //console.log("lo que se lleva en el this", this.devuelvoarticulo)
                     })
                 },
 
@@ -87,7 +87,6 @@ let articulosconsulta = Vue.component('articuloconsulta-component', function (re
                 let id = localStorage.getItem("idusuario")
                 const headtoken = { headers: { "mytoken": `${token}` } }
                
-
             },//fin del mounted
 
         }) //fin del resolve
