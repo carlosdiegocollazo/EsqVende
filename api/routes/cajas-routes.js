@@ -31,7 +31,6 @@ module.exports = function(app){
 		res.send(response);
 	})
 
-
 	//Permite dar de alta a un nuevo registo cajas.
 	app.post('/cajas/new', midd.rutasProtegidas, async function(req, res){
 		let caja = req.body;
@@ -63,5 +62,38 @@ module.exports = function(app){
 		res.set('Content-Type', 'aplication/json');
 		res.send(response);
 	})
-	
+
+// movimientos de caja
+	//Devuelve JSON con todas las ap[erturas de caja.
+	app.get('/cajas/cajasabiertasall', midd.rutasProtegidas, async function(req, res){
+		let cajas 	= require ('../services/cajas.js');
+		let response 	= await cajas.cajasabiertasall();
+		res.set('Content-Type', 'aplication/json');
+		res.send(response);
+	})	
+
+
+	//Devuelve JSON con todas las ap[erturas de caja.
+	app.get('/cajas/cajasabiertas', midd.rutasProtegidas, async function(req, res){
+		let cajas 	= require ('../services/cajas.js');
+		let response 	= await cajas.cajasabiertas();
+		res.set('Content-Type', 'aplication/json');
+		res.send(response);
+	})	
+
+
+
+	//Permite dar de alta a un nuevo apertura de caja.
+	app.post('/cajas/abrocaja', midd.rutasProtegidas, async function(req, res){
+		let caja = req.body;
+		let cajas = require('../services/cajas.js');
+		let response = await cajas.abrocaja(movcaj);
+		res.set('Content-Type', 'aplication/json');
+		res.send(response);
+	})
+
+
+
+
+
 }

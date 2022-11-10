@@ -1,4 +1,4 @@
-let componentearticulo = Vue.component('articulo-component', function (resolve) {
+let componentearticulo = Vue.component('componentearticulo-component', function (resolve) {
     axios.get('./app/componentes/articulos/vistaarticulo.html').then(function (view) {
         resolve({
             template: view.data,
