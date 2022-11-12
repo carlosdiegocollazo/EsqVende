@@ -5,106 +5,264 @@
       <!-- Div contenendor general-->
       <div class="row justify-content-center align-items-center" style="margin-top: 100px;">
          <form>
-            
+
             <!--suma de campos-->
             <form method="POST" oninput="resultado.value=parseInt(valor1.value)+parseInt(valor2.value)">
-               <input type="number" id="valor1" value="0"> 
-               <input type="number" id="valor2" value="0"> =
-               <output name="resultado" for="valor1 valor2"></output>
-           </form>
-            <!--fin de suma de campos-->
 
-            <H1 style="text-align-last: center; color: aliceblue;">Gestion de Cajas</H1>
-             <div class="form-group col-md-12">
-                  <input type="text" class="form-control" required name="nombre" title="Nombre de la Caja" v-model="registro.nombre"
-                     placeholder="Ingrese el nombre de la Caja" style="text-align: left; margin-top: 10px;">
-               </div>
-               <select v-model="codigomoneda" required class="form-control">
-                  <option disabled value="">Seleccione Moneda de la caja</option>
-                  <option v-for="(codigomoneda,index) in devuelvomoneda" v-bind:value="codigomoneda">
-                     {{codigomoneda.idmon}} {{codigomoneda.moneda}}
-                  </option>
-               </select>
-               <div class="form-group col-md-12">
-                  <input type="text" required class="form-control" name="observaciones" title="Observaciones"
-                     v-model="registro.observaciones" placeholder="Observaciones"  style="text-align: left; margin-top: 10px;" >
-               </div>
-               <div class="form-group col-md-12">
-                  <input type="checkbox" class="form-control" required name="principal" title="Principal"
-                     v-model="registro.principal" placeholder="Es caja principal"  style="text-align: left; margin-top: 10px;">
-               </div>
-               <div class="form-group col-md-2" style="text-align: center;">
-                  <label for="activo" style=" color: aliceblue;">Activa</label>
-                  <input type="checkbox" class="form-control" id="activo" v-model="registro.activo">
-              </div>
-               <div class="form-group col-md-12">
-               </div>
-               <div class="form-group col-md-3"></div>
-               <div class="form-group col-md-12" style=" color: aliceblue; text-align: center;">
-                  <button type="@leave-cancelled=" class="btn btn-info" v-on:click="limpiar()">Limpiar</button>
-                  <button type="@leave-cancelled=" class="btn btn-danger" v-on:click="cerrarsesion()">Volver</button>
-                  <button type="submit" class="btn btn-success" v-on:click="crearcajas()">Ingresar</button>
-               </div>
-            </form>
-         <div class="container-fluid" style="margin-top: 50;">
-            <!--comienzo de de tabla-->
-            <template>
-               <div class="container-fluid">
-                  <div class="row">
-                     <div class="col-md-4"></div>
-                     <div class="col-md-12">
-                        <div class="table-responsive small table-striped  table-dark">
 
-                           <table class="table">
-                              <thead class="thead-dark" style="text-align: center;">
-                                 <tr>
-                                    <th scope="col">ID</th>
-                                    <th scope="col">Nombre</th>
-                                    <th scope="col">Moneda</th>
-                                    <th scope="col">Observaciones</th>
-                                    <th scope="col">Es Principal</th>
-                                    <th scope="col">Activa</th>
-                                    <th scope="col">Acciones</th>
-                                    <th scope="col">Acciones</th>
+               <H1 style="text-align-last: center; color: aliceblue;">Apertura de Cajas</H1>
+               <div class="form-group row">
+                  <div class="form-group col-md-3">
+                     <label for="fecha" style="color: aliceblue; text-align: center;"
+                        title="Fecha del dia">Fecha</label>
+                     <input title="Fecha del dia" type="date" data-date-format="DD-MM-YYYY" min="01-01-2000"
+                        max="31-12-2050" class="form-control" name="fecha" v-model="registro.fecha">
+                  </div>
 
-                                 </tr>
-                              </thead>
-                              <tbody>
-                                 <tr v-for="(caja,index) in cajas" style="color: aquamarine;">
-                                    <td><input class="inputtabla" type="number" v-model="caja.idcaja" size="3">
-                                    </td>
-                                    <td><input class="inputtabla" type="text" v-model="caja.nombre"
-                                          title="Haga click para editar y luego presione el botón Modificar"></td>
-                                    <td style="text-align: center;">
-                                       <input class="inputtablasm" type="number" v-model="caja.idmon"
-                                          title="Haga click para editar y luego presione el botón Modificar"><input
-                                          disabled style="text-align: left;" class="inputtabla" type="text"
-                                          v-model="caja.cajmon">
-                                    </td>
-                                    <td style="text-align: center;">
-                                       <input class="inputtabla" type="text" v-model="caja.observaciones"></td>
-                                    <td><input class="inputtabla" type="che" v-model="caja.principal"
-                                          title="Haga click para editar y luego presione el botón Modificar"></td>
-                                    <td><input class="inputtabla" type="checkbox" v-model="caja.activo"
-                                          title="Haga click para editar y luego presione el botón Modificar"></td>
-                                    <td style="text-align: center;">
-                                    <td><button class="btn btn-danger"
-                                          v-on:click="eliminarcajas(index,caja.idcaja)">Elimina</button></td>
-                                    <td><button class="btn btn-success"
-                                          v-on:click="actualizarcajas(index)">Modifica</button>
-                                    </td>
-                                 </tr>
-                              </tbody>
-                           </table>
+                  <div class="form-group col-md-7">
+                     <label for="usuario" style="color: aliceblue; text-align: center;"
+                        title="Usuario que abre caja">Usuario</label>
+                     <select title="Indicar usuario que abre la caja" v-model="codigousuario" required
+                        class="form-control">
+                        <option disabled value="">Usuario</option>
+                        <option v-for="(codigousuario,index) in devuelvousuarios" v-bind:value="codigousuario">
+                           {{codigousuario.idusu}} {{codigousuario.nombres}} {{codigousuario.apellidos}}
+                        </option>
+                     </select>
+                  </div>
+                  <div class="form-group col-md-5">
+                     <label for="moneda" style="color: aliceblue; text-align: center;"
+                        title="Moneda de aperutra">Moneda</label>
+                     <select title="Seleccione moneda de apertura" v-model="codigomoneda" required class="form-control">
+                        <option disabled value="">Moneda</option>
+                        <option v-for="(codigomoneda,index) in devuelvomoneda" v-bind:value="codigomoneda">
+                           {{codigomoneda.idmon}} {{codigomoneda.moneda}}
+                        </option>
+                     </select>
+                  </div>
+                  <div class="form-group col-md-5">
+                     <label for="caja" style="color: aliceblue; text-align: center;"
+                        title="Caja de aperutra">Caja</label>
+                     <select title="Seleccion de caja" v-model="codigocaja" required class="form-control">
+                        <option disabled value="">Caja</option>
+                        <option v-for="(codigocaja,index) in devuelvocaja" v-bind:value="codigocaja">
+                           {{codigocaja.idcaj}} {{codigocaja.nombre}}
+                        </option>
+                     </select>
+                  </div>
+                  <!--comienzo de de tabla-->
+                  <template>
+                     <div class="container-fluid">
+                        <div class="row">
+                           <div class="col-md-4"></div>
+                           <div class="col-md-3">
+                              <div class="table-responsive small table-striped  table-dark">
+                                 <table class="table">
+                                    <thead class="thead-dark" style="text-align: center;">
+                                       <tr>
+                                          <th scope="col">X 1</th>
+                                          <th scope="col">x 2</th>
+                                          <th scope="col">x 5</th>
+                                       </tr>
+                                    </thead>
+                                    <tbody>
+                                       <tr style="color: aquamarine;">
+                                          <td>
+                                             <input type="number" required class="form-control" name="x1" id="x1"
+                                                title="Divisas x valor 1   " v-model="registro.uno" placeholder="0"
+                                                style="text-align: left; margin-top: 10px;">
+                                          </td>
+                                          <td>
+                                             <input type="number" required class="form-control" name="x1" id="x2"
+                                                title="Divisas x valor 2" v-model="registro.dos" placeholder="0"
+                                                style="text-align: left; margin-top: 10px;">
 
+                                          </td>
+                                          <td style="text-align: center;">
+
+                                             <input type="number" required class="form-control" name="x1" id="x5"
+                                                title="Divisas x valor 5" v-model="registro.cinco" placeholder="0"
+                                                style="text-align: left; margin-top: 10px;">
+                                          </td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                                 <table class="table">
+                                 </table>
+                              </div>
+                           </div>
                         </div>
                      </div>
+
+                     <div class="container-fluid">
+                        <div class="row">
+                           <div class="col-md-4"></div>
+                           <div class="col-md-3">
+                              <div class="table-responsive small table-striped  table-dark">
+                                 <table class="table">
+                                    <thead class="thead-dark" style="text-align: center;">
+                                       <tr>
+                                          <th scope="col">X 10</th>
+                                          <th scope="col">x 20</th>
+                                          <th scope="col">x 50</th>
+                                       </tr>
+                                    </thead>
+                                    <tbody>
+                                       <tr style="color: aquamarine;">
+                                          <td>
+                                             <input type="number" required class="form-control" name="x10" id="x10"
+                                                title="Divisas x valor 10" v-model="registro.diez" placeholder="0"
+                                                style="text-align: left; margin-top: 10px;">
+                                          </td>
+                                          <td>
+                                             <input type="number" required class="form-control" name="x20" id="x20"
+                                                title="Divisas x valor 20" v-model="registro.veinte" placeholder="0"
+                                                style="text-align: left; margin-top: 10px;">
+
+                                          </td>
+                                          <td style="text-align: center;">
+
+                                             <input type="number" required class="form-control" name="x50" id="x50"
+                                                title="Divisas x valor 50" v-model="registro.cincuenta" placeholder="0"
+                                                style="text-align: left; margin-top: 10px;">
+                                          </td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                                 <table class="table">
+                                 </table>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+
+
+                     <div class="container-fluid">
+                        <div class="row">
+                           <div class="col-md-4"></div>
+                           <div class="col-md-3">
+                              <div class="table-responsive small table-striped  table-dark">
+                                 <table class="table">
+                                    <thead class="thead-dark" style="text-align: center;">
+                                       <tr>
+                                          <th scope="col">X 100</th>
+                                          <th scope="col">x 200</th>
+                                          <th scope="col">x 500</th>
+                                       </tr>
+                                    </thead>
+                                    <tbody>
+                                       <tr style="color: aquamarine;">
+                                          <td>
+                                             <input type="number" required class="form-control" name="x100" id="x100"
+                                                title="Divisas x valor 100" v-model="registro.cien" placeholder="0"
+                                                style="text-align: left; margin-top: 10px;">
+                                          </td>
+                                          <td>
+                                             <input type="number" required class="form-control" name="x200" id="x200"
+                                                title="Divisas x valor 200" v-model="registro.doscientos" placeholder="0"
+                                                style="text-align: left; margin-top: 10px;">
+
+                                          </td>
+                                          <td style="text-align: center;">
+
+                                             <input type="number" required class="form-control" name="x500" id="x500"
+                                                title="Divisas x valor 500" v-model="registro.quinientos" placeholder="0"
+                                                style="text-align: left; margin-top: 10px;">
+                                          </td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                                 <table class="table">
+                                 </table>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+
+
+                     <div class="container-fluid">
+                        <div class="row">
+                           <div class="col-md-4"></div>
+                           <div class="col-md-3">
+                              <div class="table-responsive small table-striped  table-dark">
+                                 <table class="table">
+                                    <thead class="thead-dark" style="text-align: center;">
+                                       <tr>
+                                          <th scope="col">X 1000</th>
+                                          <th scope="col">x 2000</th>
+                                          <th scope="col">x Sin desglosar</th>
+                                       </tr>
+                                    </thead>
+                                    <tbody>
+                                       <tr style="color: aquamarine;">
+                                          <td>
+                                             <input type="number" required class="form-control" name="x1000" id="x1000"
+                                                title="Divisas x valor 1000" v-model="registro.mil" placeholder="0"
+                                                style="text-align: left; margin-top: 10px;">
+                                          </td>
+                                          <td>
+                                             <input type="number" required class="form-control" name="x2000" id="x2000"
+                                                title="Divisas x valor 2000" v-model="registro.dosmil" placeholder="0"
+                                                style="text-align: left; margin-top: 10px;">
+
+                                          </td>
+                                          <td style="text-align: center;">
+                                             <input type="number" required class="form-control" name="Sin Desglosar" id="mcsin"
+                                                title="Divisas sin desglosar" v-model="registro.sindesglosar" placeholder="0"
+                                                style="text-align: left; margin-top: 10px;">
+                                          </td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                                 <table class="table">
+                                 </table>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </template>
+
+               </div>
+               <!--find de tabla-->
+               <!--Saldos-->
+               <H4 style="text-align-last: left; color: aliceblue;">Saldos</H4>
+               <div class="form-group col-md-4">
+                  <input type="number" required class="form-control" name="saldoini" id="inicial" title="Inicial"
+                     v-model="registro.saldoini" placeholder="Inicial" style="text-align: left; margin-top: 10px;">
+               </div>
+               <div class="form-group col-md-4">
+                  <input type="number" required class="form-control" name="saldoactual" id="actual" title="Actual"
+                     v-model="registro.saldoactual" placeholder="Actual" style="text-align: left; margin-top: 10px;">
+               </div>
+               <div class="form-group col-md-4">
+                  <input type="number" required class="form-control" name="diferencia" title="Diferencia Saldos"
+                     v-model="registro.diferencia" placeholder="Diferencia de Saldos"
+                     style=" text-align: left; margin-top: 10px;">
+               </div>
+               <div class="form-group col-md-4">
+                  <input type="number" required class="form-control" name="Total" title="Total"
+                     v-model="registro.total" placeholder="Total"
+                     style=" text-align: left; margin-top: 10px;">
+               </div>
+               <div class="form-group row">
+                  <div class="form-group col-md-12">
+                     <label for="observaciones" style="color: aliceblue; text-align: center;"
+                        title="Observaciones">Observaciones</label>
+                     <input type="text" required class="form-control" name="observaciones" title="Observaciones"
+                        v-model="registro.observaciones" placeholder="Observaciones"
+                        style="text-align: left; margin-top: 10px;">
                   </div>
                </div>
-            </template>
+            </FORM>
+      </div>
+      <div class="form-group col-md-12" style=" color: aliceblue; text-align: center;">
+         <button type="@leave-cancelled=" class="btn btn-info" v-on:click="limpiar()">Limpiar</button>
+         <button type="@leave-cancelled=" class="btn btn-danger" v-on:click="cerrarsesion()">Salir de apertura</button>
+         <button type="submit" class="btn btn-success" v-on:click="crearcajas()">Ingresar</button>
+      </div>
+      </form>
+      <div class="container-fluid" style="margin-top: 50;">
 
-         </div>
-         <!--find de tabla-->
       </div>
    </div>
    <!-- Div contenendor general-->

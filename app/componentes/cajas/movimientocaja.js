@@ -1,56 +1,77 @@
-let movimientocaja = Vue.component('movcaj-component', function (resolve) {
+let movimientocaja = Vue.component('abrocaja-component', function (resolve) {
     axios.get('./app/componentes/cajas/abrecaja.html').then(function (view) {
         resolve({
             template: view.data,
             data: function () {
                 return {
-                            registro: {
-                                idmc:"",
-                                mcmon: "",
-                                mccaj: "",
-                                mcsin: "",
-                                mcsac: "",
-                                mcdif: "",
-                                mc1: "",
-                                mc2: "",
-                                mc5: "",
-                                mc10: "",
-                                mc20: "",
-                                mc50: "",
-                                mc100: "",
-                                mc200: "",
-                                mc500: "",
-                                mc1000: "",
-                                mc2000: "",
-                                mcsde: "",
-                                mctot: "",
-                                mcobs: "",
-                                mccer: 0,
-                                mcact: 0
-                            },
-                            devuelvomoneda: {
-                                idmon: "",
-                                moneda: "",
-                                divide: "",
-                                activo: ""
-                            },
-
-                            devuelvocaja: {
-                                idcaja: "",
-                                nombre: "",
-                                cajmon: "",
-                                observaciones: "",
-                                cajprin: "",
-                                activo: 1
-                            },
-                            codigomoneda: "",
-                            codigocaja: "",
-                        }
+                    registro: {
+                        idmc: "",
+                        mcfec: "",
+                        mcmon: "",
+                        mcusu: "",
+                        mccaj: "",
+                        mcsin: "",
+                        mcsac: "",
+                        mcdif: "",
+                        mc1: "",
+                        mc2: "",
+                        mc5: "",
+                        mc10: "",
+                        mc20: "",
+                        mc50: "",
+                        mc100: "",
+                        mc200: "",
+                        mc500: "",
+                        mc1000: "",
+                        mc2000: "",
+                        mcsde: "",
+                        mctot: "",
+                        mcobs: "",
+                        mccer: 0,
+                        mcact: 0
                     },
+                    devuelvomoneda: {
+                        idmon: "",
+                        moneda: "",
+                        divide: "",
+                        activo: ""
+                    },
+
+                    devuelvocaja: {
+                        idcaja: "",
+                        nombre: "",
+                        cajmon: "",
+                        observaciones: "",
+                        cajprin: "",
+                        activo: 1
+                    },
+                    
+                    devuelvousuarios: {
+                        email: "",
+                        pass: "",
+                        rpass: "",
+                        apellidos: "",
+                        nombres: "",
+                        telefono: "",
+                        direccion: "",
+                        ciudad: "",
+                        seguridad: "",
+                        fechnac: "",
+                        feching: "",
+                        observaciones: "",
+                        activo: ""
+                    },
+
+                    codigomoneda: "",
+                    codigocaja: "",
+                    codigousuario: "",
+                }
+            },
             methods: {
                 abrocaja: function () {
                     registro = {
                         mcmon: this.codigomoneda.idmon,
+                        mcmon: this.registro.fecha,
                         mccaj: this.codigocaja.idcaj,
                         mcsin: this.registro.saldoini,
                         mcsac: this.registro.saldoactual,
@@ -166,6 +187,18 @@ let movimientocaja = Vue.component('movcaj-component', function (resolve) {
 
                 },
 
+                obtenerusuario: function () {
+                    let token = localStorage.getItem("token");
+                    this.seguridad = localStorage.getItem("seguridad")
+                    const headtoken = { headers: { "mytoken": `${token}` } }
+                    axios.get(API + '/usuarios/all', headtoken).then((res) => {
+                        devuelvousuarios = res.data.response;
+                        this.devuelvousuarios = devuelvousuarios
+
+                    })
+
+                },
+
                 cerrarsesion: function () {
                     router.push('/mesa')
                 }
@@ -185,11 +218,16 @@ let movimientocaja = Vue.component('movcaj-component', function (resolve) {
                         this.devuelvomoneda = devuelvomoneda
                     })
 
-                    axios.get(API + '/cajas/cajasabiertas', headtoken).then((res) => {
+                    axios.get(API + '/cajas/all', headtoken).then((res) => {
                         devuelvocaja = res.data.response;
-                        this.devuelvcaja = devuelvocaja
-
+                        this.devuelvocaja = devuelvocaja
                     })
+                    
+                    axios.get(API + '/usuarios/all', headtoken).then((res) => {
+                        devuelvousuarios = res.data.response;
+                        this.devuelvousuarios = devuelvousuarios
+                    })
+
             },//fin del mounted
         })
     })
